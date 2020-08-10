@@ -1,0 +1,33 @@
+# easybuild easyconfig
+#
+# john dey jfey@fredhutch.org
+#
+# dependency from: nodejs -> canvas
+#
+easyblock = 'ConfigureMake'
+
+name = 'giflib'
+version = '5.1.4'
+
+homepage = 'https://downloads.sourceforge.net'
+description = """The giflib package contains libraries for reading and writing GIFs as well as programs for converting and working with GIF files."""
+
+toolchain = {'name': 'foss', 'version': '2016b'}
+
+source_urls = [" https://downloads.sourceforge.net/giflib/"]
+sources = [SOURCE_TAR_BZ2]
+
+configopts = ['--disable-static']
+
+sanity_check_paths = {
+    'files': ['bin/rsvg-convert'] +
+             ['include/librsvg-2.0/librsvg/%s' % x for x in [
+                    'librsvg-enum-types.h', 'librsvg-features.h', 'rsvg-cairo.h', 'rsvg.h']] +
+             ['lib/librsvg-2.%s' % SHLIB_EXT,
+              'share/gtk-doc/html/rsvg-2.0/index.html' ,
+              'share/man/man1/rsvg-convert.1'
+              ],
+    'dirs': ['bin', 'include', 'lib', 'share'],
+}
+
+moduleclass = 'lib'

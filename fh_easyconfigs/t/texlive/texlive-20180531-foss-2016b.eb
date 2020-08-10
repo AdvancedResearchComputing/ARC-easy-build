@@ -1,0 +1,73 @@
+# Easybuild easyconfig
+
+# TexLive 2018
+# Net Install for texlive.
+# All network installs of tex live have the same download name.
+# download install-tl-unx.tar.gz and rename it with a version install-tl-unx-20180531.tar.gz
+#
+# requires texlive.profile to be located in the current working directory
+# /app/easybuild/fh_eadyconfig/texlive.profile  paths are based on $EBROOTTEXLIVE
+#
+
+# $EBROOTTEXLIVE = /app/easybuild/software/texlive/20180531-foss-2016b
+#TEXDIR         /app/easybuild/software/texlive/20180531-foss-2016b/texlive/2018
+#TEXMFLOCAL     /app/easybuild/software/texlive/20180531-foss-2016b/texlive/texmf-local
+#TEXMFSYSCONFIG /app/easybuild/software/texlive/20180531-foss-2016b/texlive/2018/texmf-config
+#TEXMFSYSVAR    /app/easybuild/software/texlive/20180531-foss-2016b/texlive/2018/texmf-var
+
+easyblock = 'CmdCp'
+
+name = 'texlive'
+version = '20180414'
+
+homepage = 'http://tug.org'
+description = """TeX is a typesetting language. Instead of visually
+formatting your text, you enter your manuscript text intertwined with TeX
+commands in a plain text file. You then run TeX to produce formatted output,
+such as a PDF file. Thus, in contrast to standard word processors, your
+document is a separate file that does not pretend to be a representation
+of the final typeset output, and so can be easily edited and manipulated."""
+
+toolchain = {'name': 'foss', 'version': '2016b'}
+
+source_urls = ['ftp://tug.org/texlive/historic/2018/']
+sources = ['install-tl-unx-%(version)s.tar.gz',
+           'texlive-%(version)s.profile.tar.gz']
+
+dependencies = [
+    ('X11', '20160819'),
+    ('libpng', '1.6.24'),
+    ('libGLU', '9.0.0'),
+    ('Perl', '5.24.1'),
+    ('HarfBuzz', '1.4.3'), 
+    ('poppler', '0.54.0'),
+    ('cairo', '1.14.6'),
+    ('fontconfig', '2.12.1'),
+    ('zlib', '1.2.8'),
+    ('graphite2', '1.3.10'),
+]
+
+cmds_map = [('.*', "./configure.py --bootstrap")]
+
+cmds_map = [('.*', "./install-tl-%(version)s/install-tl -profile ../texlive-%(version)s.profile']
+
+modextrapaths = {
+    'PATH': 'texlive/2018/bin/x86_64-linux',
+    'INFOPATH': 'texlive/2018/texmf-dist/doc/info',
+    'MANPATH': 'texlive/2018/texmf-dist/doc/man',
+}
+modextravars = {
+    'TEXMFHOME': '%(installdir)s/texlive/2018/texmf-dist'
+}
+
+sanity_check_paths = {
+    'dirs': ['texlive/2018/bin/x86_64-linux',
+             'texlive/2018/texmf-dist',
+             ],
+    'files': [
+       'texlive/2018/bin/x86_64-linux/tex',
+       'texlive/2018/bin/x86_64-linux/latex'
+    ],
+}
+
+moduleclass = 'lang'

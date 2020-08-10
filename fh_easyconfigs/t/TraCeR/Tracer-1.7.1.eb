@@ -1,0 +1,36 @@
+# 
+# Author: John Dey jfdey@fredhutch.org
+# Fred Hutch Cancer Research Center 
+# Seattle WA US
+easyblock = "Tarball"
+
+name = 'Tracer'
+version = '1.7.1'
+
+homepage = 'http://beast.community/tracer'
+description = """Tracer is a program for analysing the trace files generated
+ by Bayesian MCMC runs (that is, the continuous parameter values sampled from
+ the chain). It can be used to analyse runs of BEAST, MrBayes, LAMARC and
+ possibly other MCMC programs."""
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+
+source_urls = ['https://github.com/beast-dev/tracer/archive']
+sources = [{
+    'download_filename': 'v%(version)s.tar.gz',
+    'filename': SOURCE_TAR_GZ
+}]
+checksums = ['947d51c5afa52354099b9b182ba6036e352356bd62df94031f33cdcb7e8effd3']
+
+dependencies = [
+    ('Java', '1.8'),
+]
+
+postinstallcmds = ["chmod -R +x %(installdir)s/bin"]
+
+sanity_check_paths = {
+    'files': ['bin/tracer', 'lib/tracer.jar'],
+    'dirs': ['bin', 'lib', 'images' ]
+}
+
+moduleclass = 'bio'

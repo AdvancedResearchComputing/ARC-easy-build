@@ -1,0 +1,38 @@
+easyblock = 'CMakeMake'
+
+name = 'MACHINA'
+version = '1.0'
+
+homepage = 'https://github.com/raphael-group/machina'
+description = """MACHINA is a computational framework for inferring migration
+ patterns between a primary tumor and metastases using DNA sequencing data."""
+
+toolchain = {'name': 'foss', 'version': '2016b'}
+
+source_urls = ['https://github.com/raphael-group/machina/archive']
+sources = ['master.zip']
+patches = ['machina-1.0_findGurobi.patch']
+
+builddependencies = [
+    ('CMake', '3.7.2'),
+]
+
+dependencies = [
+    ('Boost', '1.67.0'),
+    ('lemon', '1.3.1'),
+    ('gurobi', '8.1.0', '', True),
+]
+
+configopts = "-DLIBLEMON_ROOT=$EBROOTLEMON "
+configopts += "-DGUROBI_INCLUDE_DIR=$EBROOTGUROBI/include "
+configopts += "-DGUROBI_CPP_LIB=$EBROOTGUROBI/lib "
+configopts += "-DGUROBI_LIB=$EBROOTGUROBI/lib "
+
+separate_build_dir = True
+
+sanity_check_paths = {
+    'files': ['bin/dimacs-solver'],
+    'dirs': ['bin', 'include', 'lib', 'share'],
+}
+
+moduleclass = 'bio'
