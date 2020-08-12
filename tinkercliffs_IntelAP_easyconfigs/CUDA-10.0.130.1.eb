@@ -1,0 +1,27 @@
+# This file is an EasyBuild reciPY as per https://github.com/easybuilders/easybuild
+
+name = 'CUDA'
+local_cudaversion = '10.0.130'
+local_patchver = '1'
+version = '%s.%s' % (local_cudaversion, local_patchver)
+
+
+homepage = 'https://developer.nvidia.com/cuda-toolkit'
+description = """CUDA (formerly Compute Unified Device Architecture) is a parallel
+ computing platform and programming model created by NVIDIA and implemented by the
+ graphics processing units (GPUs) that they produce. CUDA gives developers access
+ to the virtual instruction set and memory of the parallel computational elements in CUDA GPUs."""
+
+toolchain = SYSTEM
+
+source_urls = [
+    'https://developer.nvidia.com/compute/%(namelower)s/10.0/Prod/local_installers/',
+]
+sources = [
+    '%%(namelower)s_%s_410.48_linux' % local_cudaversion,
+]
+checksums = [
+    'f5454ec2cfdf6e02979ed2b1ebc18480d5dded2ef2279e9ce68a505056da8611',
+]
+
+moduleclass = 'system'
