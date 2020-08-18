@@ -1,0 +1,33 @@
+# Built with EasyBuild version 4.2.2 on 2020-08-03_14-40-46
+# Built with EasyBuild version 4.2.2 on 2020-07-21_14-33-55
+name = 'OpenMPI'
+version = '4.0.3'
+
+homepage = 'https://www.open-mpi.org/'
+description = """The Open MPI Project is an open source MPI-3 implementation."""
+
+toolchain = {'name': 'GCC', 'version': '9.3.0'}
+
+source_urls = ['https://www.open-mpi.org/software/ompi/v%(version_major_minor)s/downloads']
+sources = [SOURCELOWER_TAR_GZ]
+checksums = ['6346bf976001ad274c7e018d6cc35c92bbb9426d8f7754fac00a17ea5ac8eebc']
+
+dependencies = [
+    ('zlib', '1.2.11'),
+    ('hwloc', '2.2.0'),
+    ('UCX', '1.8.0'),
+]
+
+# disable MPI1 compatibility for now, see what breaks...
+# configopts = '--enable-mpi1-compatibility '
+
+# to enable SLURM integration (site-specific)
+# configopts += '--with-slurm --with-pmi=/usr/include/slurm --with-pmi-libdir=/usr'
+
+#EDIT: jkrometi, 8/5/2020, Disable openib, which is being deprecated and throws weird warnings even on simple programs
+modextravars = {
+    'OMPI_MCA_btl':   'self,vader',
+    'SLURM_MPI_TYPE': 'pmix_v3',
+}
+
+moduleclass = 'mpi'
