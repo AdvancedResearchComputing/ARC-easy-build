@@ -12,10 +12,20 @@ toolchain = {'name': 'intel', 'version': '2019b'}
 toolchainopts = {'usempi': True}
 
 # Vasp is proprietary software, see http://www.vasp.at/index.php/faqs on how to get access to the code
-sources = ['vasp.5.4.4.tar.gz']
+# VTST tools are downloaded from: http://theory.cm.utexas.edu/vtsttools/
+sources = ['%(namelower)s.%(version)s.tar.gz',
+           {'filename': 'vtstcode.tar.gz', 'extract_cmd': 'tar -xzf %s -C %(namelower)s.%(version)s/src --strip 1'},
+           {'filename': 'potpaw_LDA.54.tar.gz', 'extract_cmd': 'mkdir -p %(namelower)s.%(version)s/lib/potpaw_LDA && tar -xzf %s -C %(namelower)s.%(version)s/lib/potpaw_LDA'},
+           {'filename': 'potpaw_PBE.54.tar.gz', 'extract_cmd': 'mkdir -p %(namelower)s.%(version)s/lib/potpaw_PBE && tar -xzf %s -C %(namelower)s.%(version)s/lib/potpaw_PBE'}]
+
+patches = ['%(namelower)s.%(version)s-vtst.patch']
 
 checksums = [
     '5bd2449462386f01e575f9adf629c08cb03a13142806ffb6a71309ca4431cfb3',  # vasp.5.4.4.tar.gz
+    '83241ae5857f04a465d4547c6cd22a97f59962d0186533a735dfcf7fb8b9c45a',  # vtstcode.tar.gz
+    '22d91296ccad40cebffacf1bc648b01c5efa3139410b9709b1e8aaa530fd4edc',  # potpaw_LDA.54.tar.gz
+    'bf6d2a7ea571b6d6adf4fb2454dcf93c40f808fe4711207630d4c323954a5391',  # potpaw_PBE.54.tar.gz
+    '642a6af7ad2fecebe37294f4af44aab54593693c94c70ea0f18e5b8d639bde60',  # vasp.5.4.4-vtst.patch
 ]
 
 prebuildopts = 'cp arch/makefile.include.linux_intel ./makefile.include && '
@@ -25,6 +35,19 @@ prebuildopts += 'sed -i "s|\$(MKLROOT)/interfaces/fftw3xf|\$(FFTW_LIB_DIR)|" mak
 
 # remove mkl flag to prevent mixing dynamic libs with the static libs in LIBBLACS/SCALAPACK
 #prebuildopts += 'sed -i "s|-mkl||" makefile.include && '
+# Massage the mkl flag to be multithreaded:
+prebuildopts += 'sed -i "s/-mkl=sequential/-mkl=cluster/" makefile.include && '
+
+# Setting more aggressive code opt - see https://github.com/easybuilders/easybuild-easyconfigs/pull/5680
+#prebuildopts += 'sed  -i "s/^\(OFLAG *= *\).*$/\\1\$(OPTFLAGS)/" makefile.include && '
+prebuildopts += 'sed  -i "/^OFLAG      =/s/O2/O3 -ffreestanding -march=core-avx2 -ip -lp64 -liomp5 -static-intel/" makefile.include && '
+
+## Add VTST tools - moved to patch file for simplicity ##
+# #Code change in the VASP main.F file
+# prebuildopts += 'sed -i "/CALL CHAIN_FORCE/{N; s/LATT_CUR%A/TSIF,LATT_CUR%A/}" src/main.F && '
+# #Add VTST code to SOURCE list - moved to patch file for simplicity
+# prebuildopts += 'sed -i "s/^\(.*\)\(chain.o.*\)$/\\1bfgs.o  dynmat.o  instanton.o  lbfgs.o  sd.o  cg.o  dimer.o  bbm.o  fire.o  lanczos.o  neb.o  qm.o  opt.o \\2/" src/.objects && '
+# #prebuildopts += 'sed -i "/^.*chain.o.*$/i\\\\\tbfgs.o \\\\\ \\n\\tdynmat.o \\\\\ \\n\\tinstanton.o \\\\\ \\n\\tlbfgs.o \\\\\ \\n\\tsd.o \\\\\ \\n\\tcg.o \\\\\ \\n\\tdimer.o \\\\\ \\n\\tbbm.o \\\\\ \\n\\tfire.o \\\\\ \\n\\tlanczos.o \\\\\ \\n\\tneb.o \\\\\ \\n\\tqm.o \\\\\ \\n\\topt.o \\\\\ " src/.objects && '
 
 # VASP uses LIBS as a list of folders
 prebuildopts += 'unset LIBS && '
@@ -33,7 +56,8 @@ buildopts = 'all BLACS="$LIBBLACS" SCALAPACK="$LIBSCALAPACK"'
 
 parallel = 1
 
-files_to_copy = [(['bin/vasp_std', 'bin/vasp_gam', 'bin/vasp_ncl'], 'bin')]
+#include the makefile for some transparency about how it was built
+files_to_copy = ['bin', 'lib', 'makefile.include']
 
 sanity_check_paths = {
     'files': ['bin/vasp_std', 'bin/vasp_gam', 'bin/vasp_ncl'],

@@ -1,0 +1,55 @@
+diff -rupN src.orig/main.F src/main.F
+--- src.orig/main.F	2020-08-19 12:37:15.559506664 -0400
++++ src/main.F	2020-08-19 12:37:42.908631913 -0400
+@@ -3144,7 +3144,7 @@ io_end
+       ENDIF
+ 
+       CALL CHAIN_FORCE(T_INFO%NIONS,DYN%POSION,TOTEN,TIFOR, &
+-           LATT_CUR%A,LATT_CUR%B,IO%IU6)
++           TSIF,LATT_CUR%A,LATT_CUR%B,IO%IU6)
+ 
+       CALL PARALLEL_TEMPERING(NSTEP,T_INFO%NIONS,DYN%POSION,DYN%VEL,TOTEN,TIFOR,DYN%TEBEG,DYN%TEEND, &
+            LATT_CUR%A,LATT_CUR%B,IO%IU6)
+diff -rupN src.orig/.objects src/.objects
+--- src.orig/.objects	2020-08-19 12:37:17.588531288 -0400
++++ src/.objects	2020-08-19 12:38:12.133650228 -0400
+@@ -69,6 +69,19 @@ SOURCE=\
+ 	tet.o \
+ 	tetweight.o \
+ 	hamil_rot.o \
++	bfgs.o \
++	dynmat.o \
++	instanton.o \
++	lbfgs.o \
++	sd.o \
++	cg.o \
++	dimer.o \
++	bbm.o \
++	fire.o \
++	lanczos.o \
++	neb.o \
++	qm.o \
++	opt.o \
+ 	chain.o \
+ 	dyna.o \
+ 	k-proj.o \
+@@ -268,6 +281,19 @@ SOURCE_GPU =  \
+ 	tet.o \
+ 	tetweight.o \
+ 	hamil_rot.o \
++	bfgs.o \
++	dynmat.o \
++	instanton.o \
++	lbfgs.o \
++	sd.o \
++	cg.o \
++	dimer.o \
++	bbm.o \
++	fire.o \
++	lanczos.o \
++	neb.o \
++	qm.o \
++	opt.o \
+ 	chain.o \
+ 	dyna.o \
+ 	k-proj.o \
