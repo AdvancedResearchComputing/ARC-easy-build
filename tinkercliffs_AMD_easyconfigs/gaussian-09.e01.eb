@@ -1,0 +1,57 @@
+# easyconfig file for Gaussian 09 Rev. E.01 - AVX2
+easyblock = 'PackedBinary'
+
+name = 'gaussian'
+version = '09.e01'
+#versionsuffix = '-AVX2'
+
+description = """Gaussian is a computer program for computational quantum chemistry
+that includes various methods for electronic structure calculations."""
+homepage = "http://www.gaussian.com/"
+
+toolchain = SYSTEM
+
+# license needed, download manually
+sources = ['%(namelower)s-linux-64bit-avxcpus-g09reve01.tgz']
+checksums = ['be2a27ab3ef2fe4d03bd1adc6299c7bf24d583da718cca5c0badba6562db56bf']
+
+# #PERMISSIONS OPTION 1: Use the group flag
+# group = 'arc.users'
+# #using group requires using
+# #newgrp arc.users
+# #but couldn't get it to remove group write permission
+#
+#PERMISSIONS OPTION 2: Manual chmod
+#EB changes permissions on files at the end
+#So need to do a manual chmod at the end
+postinstallcmds = ['chgrp -R arc.users %(installdir)s/']
+postinstallcmds += ['chmod -R o-rwx %(installdir)s/']
+postinstallcmds += ['chmod -R g-w %(installdir)s/']
+
+sanity_check_paths = {
+    'files': ['g09'],
+    'dirs': ['basis']
+}
+
+modextrapaths = {
+    'PATH': ['.', 'bsd'],
+    'LD_LIBRARY_PATH': ['.', 'bsd']
+}
+
+modextravars = {
+    'g09root': '%(installdir)s',
+    'GAUSS_EXEDIR': '%(installdir)s/bsd:%(installdir)s/local:%(installdir)s/extras:%(installdir)s',
+    'GAUSS_BSDDIR': '%(installdir)s/bsd',
+    'GAUSS_ARCHDIR': '%(installdir)s/arch',
+    'G09BASIS': '%(installdir)s/basis',
+    'GAUSS_SCRDIR': '',
+    '_DSM_BARRIER': 'SHM',
+    'PGI_TERM': 'trace,abort'
+}
+
+modluafooter = 'setenv("GAUSS_CHKDIR", pathJoin(os.getenv("HOME"), "CHK"))'
+modtclfooter = 'setenv("GAUSS_CHKDIR", pathJoin(os.getenv("HOME"), "CHK"))'
+
+modaliases = {'sl': '%(installdir)s/tests/searchlog.csh'}
+
+moduleclass = 'chem'
