@@ -1,0 +1,38 @@
+easyblock = "ConfigureMake"
+
+name = "Julia"
+version = "1.6.1"
+
+homepage = "http://julialang.org"
+description = """A high-level, high-performance dynamic language for technical computing."""
+
+toolchain = {'name': 'GCCcore', 'version': '10.2.0'}
+
+source_urls = ['https://github.com/JuliaLang/julia/releases/download/v%(version)s']
+sources = [SOURCELOWER_TAR_GZ]
+checksums = [
+    '366b8090bd9b2f7817ce132170d569dfa3435d590a1fa5c3e2a75786bd5cdfd5',  # julia-1.6.1.tar.gz
+]
+
+builddependencies = [
+    ('CMake', '3.18.4'),
+]
+
+skipsteps = ['configure']
+
+# Specifying JULIA_CPU_TARGET allows use on non-identical CPUs.  Doesn't affect JIT or linked toolchain components.
+buildopts = " prefix=%(installdir)s"
+buildopts += " USE_BINARYBUILDER=0"
+#buildopts += " ARCHIVE=''"
+
+#build_cmd = "sed -i '26s/16/128/' deps/blas.mk && unset ARCHIVE && make"
+
+#preinstallopts = prebuildopts
+installopts = buildopts
+
+sanity_check_paths = {
+    'files': ["bin/julia"],
+    'dirs': ["lib"]
+}
+
+moduleclass = 'lang'

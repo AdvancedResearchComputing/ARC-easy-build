@@ -1,0 +1,11 @@
+0. Search for BirdNET: eb -S ^birdnet
+1. Download easyconfig & patch for BirdNET
+2. Look at dependencies and searched for them with eb -S
+3. Download easyconfig for missing dependency: librosa
+4. Ran eb -Dr to do a dry run
+5. Everything looked good, so we did eb -r to try to install everything
+6. NCCL failed to find the source so we manually downloaded it to /apps/easybuild/sources/n/NCCL
+7. Bonus step: Edit EASYBUILD_ROBOT_PATHS to include current directory so BirdNET finds librosa
+8. Victory (we hope): eb -r BirdNET... to install everything
+
+Updating EasyBuild would have done (1) and (3) for us so that (0) would have found the easyconfig and dry run eb -Dr would have looked fine. Still would have had the NCCL problem in (6) though.

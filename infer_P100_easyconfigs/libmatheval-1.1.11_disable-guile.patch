@@ -1,0 +1,616 @@
+diff -aur libmatheval-1.1.11/configure libmatheval-1.1.11.new/configure
+--- libmatheval-1.1.11/configure	2013-08-14 16:22:40.000000000 -0400
++++ libmatheval-1.1.11.new/configure	2021-05-18 16:00:41.609099938 -0400
+@@ -11892,146 +11892,146 @@
+ 
+ AUTOM4TE=${AUTOM4TE-"${am_missing_run}autom4te"}
+ 
+-# Extract the first word of "guile", so it can be a program name with args.
+-set dummy guile; ac_word=$2
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+-$as_echo_n "checking for $ac_word... " >&6; }
+-if ${ac_cv_path_GUILE+:} false; then :
+-  $as_echo_n "(cached) " >&6
+-else
+-  case $GUILE in
+-  [\\/]* | ?:[\\/]*)
+-  ac_cv_path_GUILE="$GUILE" # Let the user override the test with a path.
+-  ;;
+-  *)
+-  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+-for as_dir in $PATH
+-do
+-  IFS=$as_save_IFS
+-  test -z "$as_dir" && as_dir=.
+-    for ac_exec_ext in '' $ac_executable_extensions; do
+-  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+-    ac_cv_path_GUILE="$as_dir/$ac_word$ac_exec_ext"
+-    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+-    break 2
+-  fi
+-done
+-  done
+-IFS=$as_save_IFS
+-
+-  ;;
+-esac
+-fi
+-GUILE=$ac_cv_path_GUILE
+-if test -n "$GUILE"; then
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $GUILE" >&5
+-$as_echo "$GUILE" >&6; }
+-else
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
+-fi
+-
+-
+-  if test "$GUILE" = "" ; then
+-      as_fn_error $? "guile required but not found" "$LINENO" 5
+-  fi
+-
+-  # Extract the first word of "guile-config", so it can be a program name with args.
+-set dummy guile-config; ac_word=$2
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+-$as_echo_n "checking for $ac_word... " >&6; }
+-if ${ac_cv_path_GUILE_CONFIG+:} false; then :
+-  $as_echo_n "(cached) " >&6
+-else
+-  case $GUILE_CONFIG in
+-  [\\/]* | ?:[\\/]*)
+-  ac_cv_path_GUILE_CONFIG="$GUILE_CONFIG" # Let the user override the test with a path.
+-  ;;
+-  *)
+-  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+-for as_dir in $PATH
+-do
+-  IFS=$as_save_IFS
+-  test -z "$as_dir" && as_dir=.
+-    for ac_exec_ext in '' $ac_executable_extensions; do
+-  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+-    ac_cv_path_GUILE_CONFIG="$as_dir/$ac_word$ac_exec_ext"
+-    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+-    break 2
+-  fi
+-done
+-  done
+-IFS=$as_save_IFS
+-
+-  ;;
+-esac
+-fi
+-GUILE_CONFIG=$ac_cv_path_GUILE_CONFIG
+-if test -n "$GUILE_CONFIG"; then
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $GUILE_CONFIG" >&5
+-$as_echo "$GUILE_CONFIG" >&6; }
+-else
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
+-fi
+-
+-
+-  if test "$GUILE_CONFIG" = "" ; then
+-      as_fn_error $? "guile-config required but not found" "$LINENO" 5
+-  fi
+-
+-  # Extract the first word of "guile-tools", so it can be a program name with args.
+-set dummy guile-tools; ac_word=$2
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+-$as_echo_n "checking for $ac_word... " >&6; }
+-if ${ac_cv_path_GUILE_TOOLS+:} false; then :
+-  $as_echo_n "(cached) " >&6
+-else
+-  case $GUILE_TOOLS in
+-  [\\/]* | ?:[\\/]*)
+-  ac_cv_path_GUILE_TOOLS="$GUILE_TOOLS" # Let the user override the test with a path.
+-  ;;
+-  *)
+-  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+-for as_dir in $PATH
+-do
+-  IFS=$as_save_IFS
+-  test -z "$as_dir" && as_dir=.
+-    for ac_exec_ext in '' $ac_executable_extensions; do
+-  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+-    ac_cv_path_GUILE_TOOLS="$as_dir/$ac_word$ac_exec_ext"
+-    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+-    break 2
+-  fi
+-done
+-  done
+-IFS=$as_save_IFS
+-
+-  ;;
+-esac
+-fi
+-GUILE_TOOLS=$ac_cv_path_GUILE_TOOLS
+-if test -n "$GUILE_TOOLS"; then
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $GUILE_TOOLS" >&5
+-$as_echo "$GUILE_TOOLS" >&6; }
+-else
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+-$as_echo "no" >&6; }
+-fi
+-
+-
+-
+-
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking libguile compile flags" >&5
+-$as_echo_n "checking libguile compile flags... " >&6; }
+-  GUILE_CFLAGS="`$GUILE_CONFIG compile`"
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $GUILE_CFLAGS" >&5
+-$as_echo "$GUILE_CFLAGS" >&6; }
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking libguile link flags" >&5
+-$as_echo_n "checking libguile link flags... " >&6; }
+-  GUILE_LDFLAGS="`$GUILE_CONFIG link`"
+-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $GUILE_LDFLAGS" >&5
+-$as_echo "$GUILE_LDFLAGS" >&6; }
++# # Extract the first word of "guile", so it can be a program name with args.
++# set dummy guile; ac_word=$2
++# { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
++# $as_echo_n "checking for $ac_word... " >&6; }
++# if ${ac_cv_path_GUILE+:} false; then :
++#   $as_echo_n "(cached) " >&6
++# else
++#   case $GUILE in
++#   [\\/]* | ?:[\\/]*)
++#   ac_cv_path_GUILE="$GUILE" # Let the user override the test with a path.
++#   ;;
++#   *)
++#   as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
++# for as_dir in $PATH
++# do
++#   IFS=$as_save_IFS
++#   test -z "$as_dir" && as_dir=.
++#     for ac_exec_ext in '' $ac_executable_extensions; do
++#   if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
++#     ac_cv_path_GUILE="$as_dir/$ac_word$ac_exec_ext"
++#     $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
++#     break 2
++#   fi
++# done
++#   done
++# IFS=$as_save_IFS
++# 
++#   ;;
++# esac
++# fi
++# GUILE=$ac_cv_path_GUILE
++# if test -n "$GUILE"; then
++#   { $as_echo "$as_me:${as_lineno-$LINENO}: result: $GUILE" >&5
++# $as_echo "$GUILE" >&6; }
++# else
++#   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++# $as_echo "no" >&6; }
++# fi
++# 
++# 
++#   if test "$GUILE" = "" ; then
++#       as_fn_error $? "guile required but not found" "$LINENO" 5
++#   fi
++# 
++#   # Extract the first word of "guile-config", so it can be a program name with args.
++# set dummy guile-config; ac_word=$2
++# { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
++# $as_echo_n "checking for $ac_word... " >&6; }
++# if ${ac_cv_path_GUILE_CONFIG+:} false; then :
++#   $as_echo_n "(cached) " >&6
++# else
++#   case $GUILE_CONFIG in
++#   [\\/]* | ?:[\\/]*)
++#   ac_cv_path_GUILE_CONFIG="$GUILE_CONFIG" # Let the user override the test with a path.
++#   ;;
++#   *)
++#   as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
++# for as_dir in $PATH
++# do
++#   IFS=$as_save_IFS
++#   test -z "$as_dir" && as_dir=.
++#     for ac_exec_ext in '' $ac_executable_extensions; do
++#   if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
++#     ac_cv_path_GUILE_CONFIG="$as_dir/$ac_word$ac_exec_ext"
++#     $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
++#     break 2
++#   fi
++# done
++#   done
++# IFS=$as_save_IFS
++# 
++#   ;;
++# esac
++# fi
++# GUILE_CONFIG=$ac_cv_path_GUILE_CONFIG
++# if test -n "$GUILE_CONFIG"; then
++#   { $as_echo "$as_me:${as_lineno-$LINENO}: result: $GUILE_CONFIG" >&5
++# $as_echo "$GUILE_CONFIG" >&6; }
++# else
++#   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++# $as_echo "no" >&6; }
++# fi
++# 
++# 
++#   if test "$GUILE_CONFIG" = "" ; then
++#       as_fn_error $? "guile-config required but not found" "$LINENO" 5
++#   fi
++# 
++#   # Extract the first word of "guile-tools", so it can be a program name with args.
++# set dummy guile-tools; ac_word=$2
++# { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
++# $as_echo_n "checking for $ac_word... " >&6; }
++# if ${ac_cv_path_GUILE_TOOLS+:} false; then :
++#   $as_echo_n "(cached) " >&6
++# else
++#   case $GUILE_TOOLS in
++#   [\\/]* | ?:[\\/]*)
++#   ac_cv_path_GUILE_TOOLS="$GUILE_TOOLS" # Let the user override the test with a path.
++#   ;;
++#   *)
++#   as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
++# for as_dir in $PATH
++# do
++#   IFS=$as_save_IFS
++#   test -z "$as_dir" && as_dir=.
++#     for ac_exec_ext in '' $ac_executable_extensions; do
++#   if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
++#     ac_cv_path_GUILE_TOOLS="$as_dir/$ac_word$ac_exec_ext"
++#     $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
++#     break 2
++#   fi
++# done
++#   done
++# IFS=$as_save_IFS
++# 
++#   ;;
++# esac
++# fi
++# GUILE_TOOLS=$ac_cv_path_GUILE_TOOLS
++# if test -n "$GUILE_TOOLS"; then
++#   { $as_echo "$as_me:${as_lineno-$LINENO}: result: $GUILE_TOOLS" >&5
++# $as_echo "$GUILE_TOOLS" >&6; }
++# else
++#   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++# $as_echo "no" >&6; }
++# fi
++# 
++# 
++# 
++# 
++#   { $as_echo "$as_me:${as_lineno-$LINENO}: checking libguile compile flags" >&5
++# $as_echo_n "checking libguile compile flags... " >&6; }
++#   GUILE_CFLAGS="`$GUILE_CONFIG compile`"
++#   { $as_echo "$as_me:${as_lineno-$LINENO}: result: $GUILE_CFLAGS" >&5
++# $as_echo "$GUILE_CFLAGS" >&6; }
++#   { $as_echo "$as_me:${as_lineno-$LINENO}: checking libguile link flags" >&5
++# $as_echo_n "checking libguile link flags... " >&6; }
++#   GUILE_LDFLAGS="`$GUILE_CONFIG link`"
++#   { $as_echo "$as_me:${as_lineno-$LINENO}: result: $GUILE_LDFLAGS" >&5
++# $as_echo "$GUILE_LDFLAGS" >&6; }
+ 
+ 
+ 
+@@ -12269,139 +12269,139 @@
+ done
+ 
+ 
+-ac_fn_c_check_type "$LINENO" "scm_t_bits" "ac_cv_type_scm_t_bits" "#include <libguile.h>
+-"
+-if test "x$ac_cv_type_scm_t_bits" = xyes; then :
+-
+-$as_echo "#define HAVE_SCM_T_BITS 1" >>confdefs.h
+-
+-fi
+-
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for scm_c_define_gsubr in -lguile" >&5
+-$as_echo_n "checking for scm_c_define_gsubr in -lguile... " >&6; }
+-if ${ac_cv_lib_guile_scm_c_define_gsubr+:} false; then :
+-  $as_echo_n "(cached) " >&6
+-else
+-  ac_check_lib_save_LIBS=$LIBS
+-LIBS="-lguile $GUILE_LDFLAGS $LIBS"
+-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+-/* end confdefs.h.  */
+-
+-/* Override any GCC internal prototype to avoid an error.
+-   Use char because int might match the return type of a GCC
+-   builtin and then its argument prototype would still apply.  */
+-#ifdef __cplusplus
+-extern "C"
+-#endif
+-char scm_c_define_gsubr ();
+-int
+-main ()
+-{
+-return scm_c_define_gsubr ();
+-  ;
+-  return 0;
+-}
+-_ACEOF
+-if ac_fn_c_try_link "$LINENO"; then :
+-  ac_cv_lib_guile_scm_c_define_gsubr=yes
+-else
+-  ac_cv_lib_guile_scm_c_define_gsubr=no
+-fi
+-rm -f core conftest.err conftest.$ac_objext \
+-    conftest$ac_exeext conftest.$ac_ext
+-LIBS=$ac_check_lib_save_LIBS
+-fi
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_guile_scm_c_define_gsubr" >&5
+-$as_echo "$ac_cv_lib_guile_scm_c_define_gsubr" >&6; }
+-if test "x$ac_cv_lib_guile_scm_c_define_gsubr" = xyes; then :
+-
+-$as_echo "#define HAVE_SCM_C_DEFINE_GSUBR 1" >>confdefs.h
+-
+-fi
+-
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for scm_make_gsubr in -lguile" >&5
+-$as_echo_n "checking for scm_make_gsubr in -lguile... " >&6; }
+-if ${ac_cv_lib_guile_scm_make_gsubr+:} false; then :
+-  $as_echo_n "(cached) " >&6
+-else
+-  ac_check_lib_save_LIBS=$LIBS
+-LIBS="-lguile $GUILE_LDFLAGS $LIBS"
+-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+-/* end confdefs.h.  */
+-
+-/* Override any GCC internal prototype to avoid an error.
+-   Use char because int might match the return type of a GCC
+-   builtin and then its argument prototype would still apply.  */
+-#ifdef __cplusplus
+-extern "C"
+-#endif
+-char scm_make_gsubr ();
+-int
+-main ()
+-{
+-return scm_make_gsubr ();
+-  ;
+-  return 0;
+-}
+-_ACEOF
+-if ac_fn_c_try_link "$LINENO"; then :
+-  ac_cv_lib_guile_scm_make_gsubr=yes
+-else
+-  ac_cv_lib_guile_scm_make_gsubr=no
+-fi
+-rm -f core conftest.err conftest.$ac_objext \
+-    conftest$ac_exeext conftest.$ac_ext
+-LIBS=$ac_check_lib_save_LIBS
+-fi
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_guile_scm_make_gsubr" >&5
+-$as_echo "$ac_cv_lib_guile_scm_make_gsubr" >&6; }
+-if test "x$ac_cv_lib_guile_scm_make_gsubr" = xyes; then :
+-
+-$as_echo "#define HAVE_SCM_MAKE_GSUBR 1" >>confdefs.h
+-
+-fi
+-
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for scm_num2dbl in -lguile" >&5
+-$as_echo_n "checking for scm_num2dbl in -lguile... " >&6; }
+-if ${ac_cv_lib_guile_scm_num2dbl+:} false; then :
+-  $as_echo_n "(cached) " >&6
+-else
+-  ac_check_lib_save_LIBS=$LIBS
+-LIBS="-lguile $GUILE_LDFLAGS $LIBS"
+-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+-/* end confdefs.h.  */
+-
+-/* Override any GCC internal prototype to avoid an error.
+-   Use char because int might match the return type of a GCC
+-   builtin and then its argument prototype would still apply.  */
+-#ifdef __cplusplus
+-extern "C"
+-#endif
+-char scm_num2dbl ();
+-int
+-main ()
+-{
+-return scm_num2dbl ();
+-  ;
+-  return 0;
+-}
+-_ACEOF
+-if ac_fn_c_try_link "$LINENO"; then :
+-  ac_cv_lib_guile_scm_num2dbl=yes
+-else
+-  ac_cv_lib_guile_scm_num2dbl=no
+-fi
+-rm -f core conftest.err conftest.$ac_objext \
+-    conftest$ac_exeext conftest.$ac_ext
+-LIBS=$ac_check_lib_save_LIBS
+-fi
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_guile_scm_num2dbl" >&5
+-$as_echo "$ac_cv_lib_guile_scm_num2dbl" >&6; }
+-if test "x$ac_cv_lib_guile_scm_num2dbl" = xyes; then :
+-
+-$as_echo "#define HAVE_SCM_NUM2DBL 1" >>confdefs.h
+-
+-fi
++# ac_fn_c_check_type "$LINENO" "scm_t_bits" "ac_cv_type_scm_t_bits" "#include <libguile.h>
++# "
++# if test "x$ac_cv_type_scm_t_bits" = xyes; then :
++# 
++# $as_echo "#define HAVE_SCM_T_BITS 1" >>confdefs.h
++# 
++# fi
++# 
++# { $as_echo "$as_me:${as_lineno-$LINENO}: checking for scm_c_define_gsubr in -lguile" >&5
++# $as_echo_n "checking for scm_c_define_gsubr in -lguile... " >&6; }
++# if ${ac_cv_lib_guile_scm_c_define_gsubr+:} false; then :
++#   $as_echo_n "(cached) " >&6
++# else
++#   ac_check_lib_save_LIBS=$LIBS
++# LIBS="-lguile $GUILE_LDFLAGS $LIBS"
++# cat confdefs.h - <<_ACEOF >conftest.$ac_ext
++# /* end confdefs.h.  */
++# 
++# /* Override any GCC internal prototype to avoid an error.
++#    Use char because int might match the return type of a GCC
++#    builtin and then its argument prototype would still apply.  */
++# #ifdef __cplusplus
++# extern "C"
++# #endif
++# char scm_c_define_gsubr ();
++# int
++# main ()
++# {
++# return scm_c_define_gsubr ();
++#   ;
++#   return 0;
++# }
++# _ACEOF
++# if ac_fn_c_try_link "$LINENO"; then :
++#   ac_cv_lib_guile_scm_c_define_gsubr=yes
++# else
++#   ac_cv_lib_guile_scm_c_define_gsubr=no
++# fi
++# rm -f core conftest.err conftest.$ac_objext \
++#     conftest$ac_exeext conftest.$ac_ext
++# LIBS=$ac_check_lib_save_LIBS
++# fi
++# { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_guile_scm_c_define_gsubr" >&5
++# $as_echo "$ac_cv_lib_guile_scm_c_define_gsubr" >&6; }
++# if test "x$ac_cv_lib_guile_scm_c_define_gsubr" = xyes; then :
++# 
++# $as_echo "#define HAVE_SCM_C_DEFINE_GSUBR 1" >>confdefs.h
++# 
++# fi
++# 
++# { $as_echo "$as_me:${as_lineno-$LINENO}: checking for scm_make_gsubr in -lguile" >&5
++# $as_echo_n "checking for scm_make_gsubr in -lguile... " >&6; }
++# if ${ac_cv_lib_guile_scm_make_gsubr+:} false; then :
++#   $as_echo_n "(cached) " >&6
++# else
++#   ac_check_lib_save_LIBS=$LIBS
++# LIBS="-lguile $GUILE_LDFLAGS $LIBS"
++# cat confdefs.h - <<_ACEOF >conftest.$ac_ext
++# /* end confdefs.h.  */
++# 
++# /* Override any GCC internal prototype to avoid an error.
++#    Use char because int might match the return type of a GCC
++#    builtin and then its argument prototype would still apply.  */
++# #ifdef __cplusplus
++# extern "C"
++# #endif
++# char scm_make_gsubr ();
++# int
++# main ()
++# {
++# return scm_make_gsubr ();
++#   ;
++#   return 0;
++# }
++# _ACEOF
++# if ac_fn_c_try_link "$LINENO"; then :
++#   ac_cv_lib_guile_scm_make_gsubr=yes
++# else
++#   ac_cv_lib_guile_scm_make_gsubr=no
++# fi
++# rm -f core conftest.err conftest.$ac_objext \
++#     conftest$ac_exeext conftest.$ac_ext
++# LIBS=$ac_check_lib_save_LIBS
++# fi
++# { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_guile_scm_make_gsubr" >&5
++# $as_echo "$ac_cv_lib_guile_scm_make_gsubr" >&6; }
++# if test "x$ac_cv_lib_guile_scm_make_gsubr" = xyes; then :
++# 
++# $as_echo "#define HAVE_SCM_MAKE_GSUBR 1" >>confdefs.h
++# 
++# fi
++# 
++# { $as_echo "$as_me:${as_lineno-$LINENO}: checking for scm_num2dbl in -lguile" >&5
++# $as_echo_n "checking for scm_num2dbl in -lguile... " >&6; }
++# if ${ac_cv_lib_guile_scm_num2dbl+:} false; then :
++#   $as_echo_n "(cached) " >&6
++# else
++#   ac_check_lib_save_LIBS=$LIBS
++# LIBS="-lguile $GUILE_LDFLAGS $LIBS"
++# cat confdefs.h - <<_ACEOF >conftest.$ac_ext
++# /* end confdefs.h.  */
++# 
++# /* Override any GCC internal prototype to avoid an error.
++#    Use char because int might match the return type of a GCC
++#    builtin and then its argument prototype would still apply.  */
++# #ifdef __cplusplus
++# extern "C"
++# #endif
++# char scm_num2dbl ();
++# int
++# main ()
++# {
++# return scm_num2dbl ();
++#   ;
++#   return 0;
++# }
++# _ACEOF
++# if ac_fn_c_try_link "$LINENO"; then :
++#   ac_cv_lib_guile_scm_num2dbl=yes
++# else
++#   ac_cv_lib_guile_scm_num2dbl=no
++# fi
++# rm -f core conftest.err conftest.$ac_objext \
++#     conftest$ac_exeext conftest.$ac_ext
++# LIBS=$ac_check_lib_save_LIBS
++# fi
++# { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_guile_scm_num2dbl" >&5
++# $as_echo "$ac_cv_lib_guile_scm_num2dbl" >&6; }
++# if test "x$ac_cv_lib_guile_scm_num2dbl" = xyes; then :
++# 
++# $as_echo "#define HAVE_SCM_NUM2DBL 1" >>confdefs.h
++# 
++# fi
+ 
+ 
+ ac_config_files="$ac_config_files Makefile doc/Makefile lib/Makefile"
+diff -aur libmatheval-1.1.11/configure.in libmatheval-1.1.11.new/configure.in
+--- libmatheval-1.1.11/configure.in	2013-08-14 16:22:08.000000000 -0400
++++ libmatheval-1.1.11.new/configure.in	2021-05-18 10:47:53.593915329 -0400
+@@ -44,7 +44,7 @@
+ AC_PROG_MAKE_SET
+ AC_PROG_YACC
+ AM_MISSING_PROG([AUTOM4TE], [autom4te])
+-GUILE_FLAGS
++#GUILE_FLAGS
+ 
+ dnl Checks for libraries.
+ 
+@@ -59,11 +59,11 @@
+ dnl Checks for library functions.
+ AC_CHECK_FUNCS([bzero memset], [break])
+ 
+-dnl Additional Guile feature checks.
+-AC_CHECK_TYPE([scm_t_bits], [AC_DEFINE([HAVE_SCM_T_BITS], [1], [Define to 1 if you have the `scm_t_bits' type.])], [], [#include <libguile.h>])
+-AC_CHECK_LIB([guile], [scm_c_define_gsubr], [AC_DEFINE([HAVE_SCM_C_DEFINE_GSUBR], [1], [Define to 1 if you have the `scm_c_define_gsubr' function.])], [], [$GUILE_LDFLAGS])
+-AC_CHECK_LIB([guile], [scm_make_gsubr], [AC_DEFINE([HAVE_SCM_MAKE_GSUBR], [1], [Define to 1 if you have the `scm_make_gsubr' function.])], [], [$GUILE_LDFLAGS])
+-AC_CHECK_LIB([guile], [scm_num2dbl], [AC_DEFINE([HAVE_SCM_NUM2DBL], [1], [Define to 1 if you have the `scm_num2dbl' function.])], [], [$GUILE_LDFLAGS])
++#dnl Additional Guile feature checks.
++#AC_CHECK_TYPE([scm_t_bits], [AC_DEFINE([HAVE_SCM_T_BITS], [1], [Define to 1 if you have the `scm_t_bits' type.])], [], [#include <libguile.h>])
++#AC_CHECK_LIB([guile], [scm_c_define_gsubr], [AC_DEFINE([HAVE_SCM_C_DEFINE_GSUBR], [1], [Define to 1 if you have the `scm_c_define_gsubr' function.])], [], [$GUILE_LDFLAGS])
++#AC_CHECK_LIB([guile], [scm_make_gsubr], [AC_DEFINE([HAVE_SCM_MAKE_GSUBR], [1], [Define to 1 if you have the `scm_make_gsubr' function.])], [], [$GUILE_LDFLAGS])
++#AC_CHECK_LIB([guile], [scm_num2dbl], [AC_DEFINE([HAVE_SCM_NUM2DBL], [1], [Define to 1 if you have the `scm_num2dbl' function.])], [], [$GUILE_LDFLAGS])
+ 
+ AC_CONFIG_FILES([Makefile doc/Makefile lib/Makefile])
+ AC_OUTPUT(libmatheval.pc)
+diff -aur libmatheval-1.1.11/tests/Makefile.am libmatheval-1.1.11.new/tests/Makefile.am
+--- libmatheval-1.1.11/tests/Makefile.am	2013-08-14 16:22:08.000000000 -0400
++++ libmatheval-1.1.11.new/tests/Makefile.am	2021-05-18 10:48:47.551555712 -0400
+@@ -64,13 +64,13 @@
+ INCLUDES = -I$(top_builddir) -I$(top_builddir)/lib -I$(top_srcdir)	\
+ -I$(top_srcdir)/lib
+ 
+-noinst_PROGRAMS = matheval
+-
+-matheval_SOURCES = matheval.c
+-
+-matheval_CFLAGS = $(GUILE_CFLAGS)
+-matheval_LDADD = $(top_builddir)/lib/libmatheval.la
+-matheval_LDFLAGS = $(GUILE_LDFLAGS)
++#noinst_PROGRAMS = matheval
++#
++#matheval_SOURCES = matheval.c
++#
++#matheval_CFLAGS = $(GUILE_CFLAGS)
++#matheval_LDADD = $(top_builddir)/lib/libmatheval.la
++#matheval_LDFLAGS = $(GUILE_LDFLAGS)
+ 
+ .PHONY: beauty
+ 

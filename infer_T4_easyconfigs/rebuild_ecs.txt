@@ -1,0 +1,12 @@
+/apps/easybuild/software/infer-skylake/EasyBuild/4.3.2/easybuild/easyconfigs/u/UCX/UCX-1.9.0-GCCcore-10.2.0.eb
+/apps/easybuild/software/infer-skylake/EasyBuild/4.3.2/easybuild/easyconfigs/o/OpenMPI/OpenMPI-4.0.5-GCC-10.2.0.eb
+/apps/easybuild/software/infer-skylake/EasyBuild/4.3.2/easybuild/easyconfigs/g/gompi/gompi-2020b.eb
+/apps/easybuild/software/infer-skylake/EasyBuild/4.3.2/easybuild/easyconfigs/f/FFTW/FFTW-3.3.8-gompi-2020b.eb
+/apps/easybuild/software/infer-skylake/EasyBuild/4.3.2/easybuild/easyconfigs/s/ScaLAPACK/ScaLAPACK-2.1.0-gompi-2020b.eb
+/apps/easybuild/software/infer-skylake/EasyBuild/4.3.2/easybuild/easyconfigs/f/foss/foss-2020b.eb
+/apps/easybuild/software/infer-skylake/EasyBuild/4.3.2/easybuild/easyconfigs/t/Tcl/Tcl-8.6.10-GCCcore-10.2.0.eb
+/apps/easybuild/software/infer-skylake/EasyBuild/4.3.2/easybuild/easyconfigs/u/UnZip/UnZip-6.0-GCCcore-10.2.0.eb
+/apps/easybuild/software/infer-skylake/EasyBuild/4.3.2/easybuild/easyconfigs/s/SQLite/SQLite-3.33.0-GCCcore-10.2.0.eb
+/apps/easybuild/software/infer-skylake/EasyBuild/4.3.2/easybuild/easyconfigs/l/libffi/libffi-3.3-GCCcore-10.2.0.eb
+/apps/easybuild/software/infer-skylake/EasyBuild/4.3.2/easybuild/easyconfigs/g/GMP/GMP-6.2.0-GCCcore-10.2.0.eb
+/apps/easybuild/software/infer-skylake/EasyBuild/4.3.2/easybuild/easyconfigs/p/Python/Python-3.8.6-GCCcore-10.2.0.eb

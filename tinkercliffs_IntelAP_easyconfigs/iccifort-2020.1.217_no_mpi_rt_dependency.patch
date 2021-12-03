@@ -1,0 +1,11 @@
+--- parallel_studio_xe_2020_update1_cluster_edition/pset/mediaconfig.xml.orig	2020-07-21 14:24:08.001682457 -0400
++++ parallel_studio_xe_2020_update1_cluster_edition/pset/mediaconfig.xml	2020-07-21 14:27:34.515490390 -0400
+@@ -1737,7 +1737,7 @@
+     </Layers>
+     <InstallDir>${COMPLIB_ROOT}</InstallDir>
+     <GUID>1585046063058</GUID>
+-    <Component depend="53.3;6.1;6.3;6.91;6.12;6.7;6.24;153.2" id="1" invisible="0" mandatory="0" platform="INTEL64">
++    <Component depend="53.3;6.1;6.3;6.91;6.12;6.7;6.24" id="1" invisible="0" mandatory="0" platform="INTEL64">
+       <Name>Intel Fortran Compiler for Intel(R) 64</Name>
+       <Description>Intel Fortran Compiler 19.1 Update 1</Description>
+       <Name locale="ja_JP.UTF-8">インテル(R) Fortran コンパイラー (インテル(R) 64)</Name>

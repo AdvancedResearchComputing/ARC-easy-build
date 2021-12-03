@@ -1,0 +1,57 @@
+# Built with EasyBuild version 4.3.0 on 2020-11-09_09-38-12
+name = 'OpenMPI'
+version = '4.0.3'
+
+homepage = 'https://www.open-mpi.org/'
+description = """The Open MPI Project is an open source MPI-3 implementation."""
+
+toolchain = {'name': 'GCC', 'version': '9.3.0'}
+
+source_urls = ['https://www.open-mpi.org/software/ompi/v%(version_major_minor)s/downloads']
+sources = [SOURCELOWER_TAR_GZ]
+checksums = ['6346bf976001ad274c7e018d6cc35c92bbb9426d8f7754fac00a17ea5ac8eebc']
+
+dependencies = [
+    ('zlib', '1.2.11'),
+    ('hwloc', '2.2.0'),
+    ('UCX', '1.8.0'),
+]
+
+# disable MPI1 compatibility for now, see what breaks...
+configopts = '--with-slurm \
+      --with-pmi=/cm/shared/apps/slurm/20.02.3/include/slurm \
+      --with-pmi-libdir=/cm/shared/apps/slurm/20.02.3/lib64'
+
+
+# to enable SLURM integration (site-specific)
+# configopts += '--with-slurm --with-pmi=/usr/include/slurm --with-pmi-libdir=/usr'
+
+moduleclass = 'mpi'
+
+# Build statistics
+buildstats = [{
+    "build_time": 800.74,
+    "command_line": ["--buildpath='/dev/shm/jkrometi/build'", '--group-writable-installdir', "--installpath-modules='/apps/easybuild/modules/tinkercliffs-cascade_lake'", "--installpath-software='/apps/easybuild/software/tinkercliffs-cascade_lake'", "--repositorypath='/apps/easybuild/ebfiles_repo/tinkercliffs-cascade_lake'", "--robot='/apps/easybuild/ebfiles_repo-arc/tinkercliffs-cascade_lake:/apps/easybuild/ebfiles_repo-arc/generic:/apps/easybuild/ebfiles_repo/tinkercliffs-cascade_lake:/apps/easybuild/software/tinkercliffs-cascade_lake/EasyBuild/4.3.0/easybuild/easyconfigs'", "--robot-paths='/apps/easybuild/ebfiles_repo-arc/tinkercliffs-cascade_lake:/apps/easybuild/ebfiles_repo-arc/generic:/apps/easybuild/ebfiles_repo/tinkercliffs-cascade_lake:'", '--set-gid-bit', "--sourcepath='/apps/easybuild/sources'", '--sticky-bit', "--umask='002'", 'foss-2020a.eb'],
+    "core_count": 96,
+    "cpu_arch": "x86_64",
+    "cpu_arch_name": "UNKNOWN",
+    "cpu_model": "Intel(R) Xeon(R) Platinum 9242 CPU @ 2.30GHz",
+    "cpu_speed": 3800.0,
+    "cpu_vendor": "Intel",
+    "easybuild-easyblocks_version": "4.3.0",
+    "easybuild-framework_version": "4.3.0",
+    "gcc_version": "Using built-in specs.; COLLECT_GCC=gcc; COLLECT_LTO_WRAPPER=/apps/easybuild/software/tinkercliffs-cascade_lake/GCCcore/9.3.0/libexec/gcc/x86_64-pc-linux-gnu/9.3.0/lto-wrapper; Target: x86_64-pc-linux-gnu; Configured with: ../configure --enable-languages=c,c++,fortran --enable-lto --enable-checking=release --disable-multilib --enable-shared=yes --enable-static=yes --enable-threads=posix --enable-plugins --enable-gold=default --enable-ld --with-plugin-ld=ld.gold --prefix=/apps/easybuild/software/tinkercliffs-cascade_lake/GCCcore/9.3.0 --with-local-prefix=/apps/easybuild/software/tinkercliffs-cascade_lake/GCCcore/9.3.0 --enable-bootstrap --with-isl=/dev/shm/jkrometi/build/GCCcore/9.3.0/system-system/gcc-9.3.0/stage2_stuff; Thread model: posix; gcc version 9.3.0 (GCC) ; ",
+    "glibc_version": "2.17",
+    "hostname": "tc-intel015",
+    "install_size": 28928780,
+    "modules_tool": ('Lmod', '/usr/share/lmod/lmod/libexec/lmod', '8.2.7'),
+    "os_name": "centos linux",
+    "os_type": "Linux",
+    "os_version": "7.7.1908",
+    "platform_name": "x86_64-unknown-linux",
+    "python_version": "2.7.5 (default, Aug  7 2019, 00:51:29) ; [GCC 4.8.5 20150623 (Red Hat 4.8.5-39)]",
+    "system_gcc_path": "/apps/easybuild/software/tinkercliffs-cascade_lake/GCCcore/9.3.0/bin/gcc",
+    "system_python_path": "/usr/bin/python",
+    "timestamp": 1604932692,
+    "total_memory": 385600,
+}]
